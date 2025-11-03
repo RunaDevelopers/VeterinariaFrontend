@@ -1,14 +1,14 @@
 import { Navbar } from "@/components/shared";
 
 export default function LandingLayout({
- children
+  children,
 }: {
- children: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <div>
       <Navbar />
-      {children}
+      <main className="container mx-auto">{children}</main>
     </div>
   );
 }

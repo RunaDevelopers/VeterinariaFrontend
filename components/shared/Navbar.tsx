@@ -1,10 +1,11 @@
-import Link from "next/link";
 import { Button } from "../ui/button";
+import Link from "next/link";
 import Image from "next/image";
+import { Navlink } from "./Navlink";
 
 export const Navbar = () => {
-
   const routes = [
+    { name: "Inicio", path: "/inicio" },
     { name: "Nosotros", path: "/nosotros" },
     { name: "Servicios", path: "/servicios" },
     { name: "Contacto", path: "/contacto" },
@@ -12,8 +13,8 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="flex items-center justify-between py-6 px-8 max-w-7xl mx-auto">
-        <Link href="/" className="flex gap-2 items-center">
+      <header className="flex items-center justify-between py-6 px-8 container mx-auto">
+        <Link href="/inicio" className="flex gap-2 items-center">
           <Image
             src="/logo.webp"
             alt="Logo de vetPet"
@@ -21,17 +22,16 @@ export const Navbar = () => {
             height={50}
             className="object-contain"
           />
-          <span className="text-xl">vetPet</span>
+          <span className="text-3xl font-bold">vetPet</span>
         </Link>
-        <nav className="flex gap-3 p-3 bg-cyan-500 rounded-lg">
+        <nav className="flex gap-3 p-2 bg-cyan-400 rounded-lg">
           {routes.map((route) => (
-            <Link key={route.name} href={route.path} 
-              className="text-lg bg-white rounded-sm py-3 px-12 font-bold">
-              {route.name}
-            </Link>
+            <Navlink key={route.name} route={route} />
           ))}
         </nav>
-        <Button>Iniciar Sesión</Button>
+        <Link href="/auth/login">
+          <Button variant={"primary"}>Iniciar Sesión</Button>
+        </Link>
       </header>
     </>
   );
