@@ -10,21 +10,30 @@ import { Input } from "@/components/ui/input";
 import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import { ScaleIn } from "../animations";
 
+// Estado global para autenticacion
+import { useAuthStore } from "@/lib/store/auth.store";
+import { redirect } from "next/navigation";
+
 interface LoginFormProps {
   onToggleForm: () => void;
 }
 
 export const LoginForm = ({ onToggleForm }: LoginFormProps) => {
+  const { login, isAuthenticated } = useAuthStore();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginSchema) => {
-    console.log(data);
+  const onSubmit = async (data: LoginSchema) => {
+    await login(data);
+    if (isAuthenticated) {
+      redirect("/dashboard/panel");
+    }
   };
 
   return (
@@ -93,7 +102,14 @@ export const LoginForm = ({ onToggleForm }: LoginFormProps) => {
               </button>
             </div>
 
-            <Button>Login</Button>
+            <Button
+              disabled={isSubmitting}
+              className={`${
+                isSubmitting ? "bg-gray-300 text-black pointer-events-none" : ""
+              }`}
+            >
+                {isSubmitting ? "Iniciando..." : "Iniciar Sesión"}
+            </Button>
 
             <div className="text-center mt-6">
               <span className="text-gray-500 text-sm">
@@ -102,7 +118,12 @@ export const LoginForm = ({ onToggleForm }: LoginFormProps) => {
               <button
                 type="button"
                 onClick={onToggleForm}
-                className="text-cyan-400 font-semibold text-sm cursor-pointer"
+                disabled={isSubmitting}
+                className={`text-cyan-400 font-semibold text-sm cursor-pointer ${
+                  isSubmitting
+                    ? "bg-gray-300 text-black pointer-events-none"
+                    : ""
+                }`}
               >
                 Registrate Aqui!
               </button>

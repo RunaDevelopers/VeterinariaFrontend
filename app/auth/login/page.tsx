@@ -1,3 +1,9 @@
+
+export const metadata = {
+ title: 'vetPet | Login',
+ description: 'Iniciar sesión o registrarse en la aplicación.',
+};
+
 import { AuthSwitcher } from "@/components/auth/AuthSwitcher";
 
 export default function LoginPage() {

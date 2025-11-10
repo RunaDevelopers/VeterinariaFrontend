@@ -9,26 +9,35 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 
+// Estado global para autenticacion
+import { useAuthStore } from "@/lib/store/auth.store";
+
 interface RegisterFormProps {
   onToggleForm: () => void;
 }
 
 import { useState } from "react";
 import { ScaleIn } from "../animations";
+import { redirect } from "next/navigation";
 
 export const RegisterForm = ({ onToggleForm }: RegisterFormProps) => {
+  const { register: registerUser, isAuthenticated } = useAuthStore();
+
   const [step, setStep] = useState(1);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     trigger,
   } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: RegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterSchema) => {
+    await registerUser(data);
+    if (isAuthenticated) {
+      redirect("/dashboard/panel");
+    }
   };
 
   // Validar el primer paso antes de avanzar
@@ -144,7 +153,14 @@ export const RegisterForm = ({ onToggleForm }: RegisterFormProps) => {
                       </span>
                     )}
                   </Field>
-                  <Button type="submit" className="w-full mt-4">
+                  <Button
+                    disabled={isSubmitting}
+                    className={`${
+                      isSubmitting
+                        ? "bg-gray-300 text-black pointer-events-none"
+                        : ""
+                    }`}
+                  >
                     Registrarse
                   </Button>
                 </>

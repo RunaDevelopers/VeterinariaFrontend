@@ -1,7 +1,8 @@
+import { Rol } from "./rol.interface";
 
 export interface Usuario {
     idUsuario: string;
-    idRol: string;
+    idRol: Rol;
     nombres: string;
     apellidos: string;
     email: string;
