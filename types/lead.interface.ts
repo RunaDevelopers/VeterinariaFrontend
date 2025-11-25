@@ -7,5 +7,5 @@ export interface Lead {
     telefono: string;
     correo: string;
     fechaTentativa: Date;
-    idTipoServicio: TipoServicio;
+    idTipoServicios: TipoServicio;
 }

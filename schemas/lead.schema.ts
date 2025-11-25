@@ -11,5 +11,5 @@ export const leadSchema = z.object({
     .min(1, "El correo es obligatorio")
     .email("Correo electrónico inválido"),
   fechaTentativa: z.date().min(new Date(), "La fecha tentativa debe ser futura"),
-  idTipoServicio: z.string().min(1, "El tipo de servicio es obligatorio"),
+  idTipoServicios: z.string().min(1, "El tipo de servicio es obligatorio"),
 });
