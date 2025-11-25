@@ -1,8 +1,4 @@
 
-export const metadata = {
- title: 'vetPet | Mascotas',
- description: 'Gestión de mascotas en vetPet',
-};
 
 export default function MascotasPage() {
   return (

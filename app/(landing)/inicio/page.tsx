@@ -19,7 +19,7 @@ export default function InicioPage() {
             </p>
           </h1>
           <Link
-            href="/auth/register"
+            href="/reserva-ya"
             className="inline-block bg-cyan-400 text-white text-4xl font-bold text-center px-6 py-3 rounded-md hover:bg-cyan-500 transition"
           >
             ¡Reserva Ya!

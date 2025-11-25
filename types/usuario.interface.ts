@@ -2,7 +2,8 @@ import { Rol } from "./rol.interface";
 
 export interface Usuario {
     idUsuario: string;
-    idRol: Rol;
+    idRol: string;  // El backend envía solo el ID como string
+    nombreRol: string;  // El backend envía el nombre del rol directamente
     nombres: string;
     apellidos: string;
     email: string;

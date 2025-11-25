@@ -12,6 +12,10 @@ import {
   Send,
   Settings2,
   SquareTerminal,
+  User,
+  Calendar,
+  Heart,
+  UserCircle,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -27,86 +31,220 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { useAuth } from "@/hooks/use-auth"
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+// Configuración del sidebar según el rol
+const sidebarConfig = {
+  admin: {
+    navMain: [
+      {
+        title: "Dashboard",
+        url: "#",
+        icon: SquareTerminal,
+        isActive: true,
+        items: [
+          {
+            title: "Panel",
+            url: "/dashboard/admin",
+          },
+        ],
+      },
+      {
+        title: "Gestión",
+        url: "#",
+        icon: Bot,
+        items: [
+          {
+            title: "Reservas",
+            url: "/dashboard/admin/reservas",
+          },
+          {
+            title: "Clientes",
+            url: "/dashboard/admin/clientes",
+          },
+          {
+            title: "Mascotas",
+            url: "/dashboard/admin/mascotas",
+          },
+          {
+            title: "Especies",
+            url: "/dashboard/admin/especies",
+          },
+          {
+            title: "Razas",
+            url: "/dashboard/admin/razas",
+          },
+          {
+            title: "Tipos de Servicios",
+            url: "/dashboard/admin/tipos-servicios",
+          }
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Soporte",
+        url: "#",
+        icon: LifeBuoy,
+      },
+      {
+        title: "Configuración",
+        url: "#",
+        icon: Settings2,
+      },
+    ],
   },
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "Panel",
-          url: "/panel",
-        },
-      ],
-    },
-    {
-      title: "Gestión",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Reservas",
-          url: "/dashboard/reservas",
-        },
-        {
-          title: "Clientes",
-          url: "/dashboard/clientes",
-        },
-        {
-          title: "Mascotas",
-          url: "/dashboard/mascotas",
-        },
-        {
-          title: "Especies",
-          url: "/dashboard/especies",
-        },
-        {
-          title: "Razas",
-          url: "/dashboard/razas",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  // projects: [
-  //   {
-  //     name: "Design Engineering",
-  //     url: "#",
-  //     icon: Frame,
-  //   },
-  //   {
-  //     name: "Sales & Marketing",
-  //     url: "#",
-  //     icon: PieChart,
-  //   },
-  //   {
-  //     name: "Travel",
-  //     url: "#",
-  //     icon: Map,
-  //   },
-  // ],
+  cliente: {
+    navMain: [
+      {
+        title: "Mi Dashboard",
+        url: "#",
+        icon: SquareTerminal,
+        isActive: true,
+        items: [
+          {
+            title: "Inicio",
+            url: "/dashboard/cliente",
+          },
+        ],
+      },
+      {
+        title: "Mis Servicios",
+        url: "#",
+        icon: Bot,
+        items: [
+          {
+            title: "Mis Mascotas",
+            url: "/dashboard/cliente/mis-mascotas",
+          },
+          {
+            title: "Mis Citas",
+            url: "/dashboard/cliente/mis-citas",
+          },
+          {
+            title: "Mi Perfil",
+            url: "/dashboard/cliente/perfil",
+          },
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Soporte",
+        url: "#",
+        icon: LifeBuoy,
+      },
+      {
+        title: "Ayuda",
+        url: "#",
+        icon: Send,
+      },
+    ],
+  },
+  veterinario: {
+    navMain: [
+      {
+        title: "Dashboard",
+        url: "#",
+        icon: SquareTerminal,
+        isActive: true,
+        items: [
+          {
+            title: "Panel",
+            url: "/dashboard/veterinario",
+          },
+        ],
+      },
+      {
+        title: "Atención",
+        url: "#",
+        icon: Heart,
+        items: [
+          {
+            title: "Consultas",
+            url: "/dashboard/veterinario/consultas",
+          },
+          {
+            title: "Historiales",
+            url: "/dashboard/veterinario/historiales",
+          },
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Soporte",
+        url: "#",
+        icon: LifeBuoy,
+      },
+    ],
+  },
+  recepcionista: {
+    navMain: [
+      {
+        title: "Dashboard",
+        url: "#",
+        icon: SquareTerminal,
+        isActive: true,
+        items: [
+          {
+            title: "Panel",
+            url: "/dashboard/recepcionista",
+          },
+        ],
+      },
+      {
+        title: "Atención al Cliente",
+        url: "#",
+        icon: Calendar,
+        items: [
+          {
+            title: "Citas",
+            url: "/dashboard/recepcionista/citas",
+          },
+          {
+            title: "Clientes",
+            url: "/dashboard/recepcionista/clientes",
+          },
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Soporte",
+        url: "#",
+        icon: LifeBuoy,
+      },
+    ],
+  },
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user, isAdmin, isCliente, isVeterinario, isRecepcionista } = useAuth();
+
+  // Determinar qué configuración de sidebar mostrar según el rol
+  const getSidebarData = () => {
+    if (isAdmin()) return sidebarConfig.admin;
+    if (isCliente()) return sidebarConfig.cliente;
+    if (isVeterinario()) return sidebarConfig.veterinario;
+    if (isRecepcionista()) return sidebarConfig.recepcionista;
+    
+    // Por defecto, mostrar configuración básica
+    return {
+      navMain: [],
+      navSecondary: [],
+    };
+  };
+
+  const sidebarData = getSidebarData();
+
+  // Datos del usuario para el footer
+  const userData = {
+    name: user ? `${user.nombres} ${user.apellidos}` : "Usuario",
+    email: user?.email || "",
+    avatar: "/avatars/default.jpg",
+  };
+
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
@@ -121,8 +259,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">Veterinaria</span>
+                  <span className="truncate text-xs">{user?.nombreRol || "Sistema"}</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -130,12 +268,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={sidebarData.navMain} />
         {/* <NavProjects projects={data.projects} /> */}
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
     </Sidebar>
   )
