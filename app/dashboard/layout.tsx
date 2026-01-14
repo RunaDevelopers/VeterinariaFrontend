@@ -14,15 +14,14 @@ export default function DashboardLayout({
 }) {
   return (
     <RoleGuard>
-      <div className="[--header-height:calc(--spacing(14))]">
-        <SidebarProvider className="flex flex-col">
-          <SiteHeader />
-          <div className="flex flex-1">
-            <AppSidebar />
-            <SidebarInset>
-              <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
-            </SidebarInset>
-          </div>
+      <div className="min-h-screen bg-background">
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset className="bg-background">
+            <main className="flex-1">
+              {children}
+            </main>
+          </SidebarInset>
         </SidebarProvider>
       </div>
     </RoleGuard>

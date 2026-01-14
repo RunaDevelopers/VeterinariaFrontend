@@ -13,30 +13,30 @@ export default function InicioPage() {
       <div className="space-y-5">
         <div className="flex flex-col gap-5">
           <h1 className="text-5xl font-bold">
-            <p>El bienestar de tu</p>
-            <p>
-              mascota empieza <span className="text-cyan-400">aquí.</span>
+            <p className="text-blue-900">El bienestar de tu</p>
+            <p className="text-blue-900">
+              mascota empieza <span className="text-orange-500">aquí.</span>
             </p>
           </h1>
           <Link
             href="/reserva-ya"
-            className="inline-block bg-cyan-400 text-white text-4xl font-bold text-center px-6 py-3 rounded-md hover:bg-cyan-500 transition"
+            className="inline-block bg-orange-500 text-white text-4xl font-bold text-center px-6 py-3 rounded-md hover:bg-orange-600 transition"
           >
             ¡Reserva Ya!
           </Link>
         </div>
         <div className="grid grid-cols-2 grid-rows-3 gap-x-10 gap-y-5 mt-10 md:mt-20">
           <div className="flex flex-col text-5xl font-bold col-start-1 row-start-1">
-            <p className="text-black">+ 10 años</p>
-            <span className="text-cyan-400 text-4xl">de experiencia</span>
+            <p className="text-blue-900">+ 10 años</p>
+            <span className="text-orange-500 text-4xl">de experiencia</span>
           </div>
           <div className="flex flex-col text-5xl font-bold col-start-2 row-start-2">
-            <p className="text-black">+ 500 familias</p>
-            <span className="text-cyan-400 text-4xl">confían en nosotros</span>
+            <p className="text-blue-900">+ 500 familias</p>
+            <span className="text-orange-500 text-4xl">confían en nosotros</span>
           </div>
           <div className="flex flex-col text-5xl font-bold col-start-1 row-start-3">
-            <p className="text-black">Tecnología</p>
-            <span className="text-cyan-400 text-4xl">de vanguardia</span>
+            <p className="text-blue-900">Tecnología</p>
+            <span className="text-orange-500 text-4xl">de vanguardia</span>
           </div>
         </div>
       </div>

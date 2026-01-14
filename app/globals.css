@@ -105,8 +105,39 @@
 
   --radius: 0.625rem;
 
-  --background: oklch(1 0 0);
+  /* Paleta vetPet - Colores de Marca */
+  --primary: #2F80ED;
+  --primary-hover: #1C6ED5;
+  --primary-soft: #EAF2FF;
+  
+  --secondary: #27AE60;
+  --secondary-hover: #1E8E50;
+  --secondary-soft: #EAF8F0;
+  
+  --accent: #F2994A;
+  
+  /* Estados del Sistema */
+  --success: #27AE60;
+  --warning: #F2C94C;
+  --error: #EB5757;
+  --info: #2D9CDB;
+  
+  /* Fondos y Superficies */
+  --background: #F9F6F1;
+  --surface: #FFFFFF;
+  
+  /* Tipografía */
+  --text-primary: #2C2C2C;
+  --text-secondary: #5C5C5C;
+  --text-muted: #8A8A8A;
+  
+  /* Bordes */
+  --border-color: #DADADA;
+  
+  /* Focus Ring */
+  --focus-ring: #2F80ED;
 
+  /* Valores originales de shadcn (compatibilidad) */
   --foreground: oklch(0.145 0 0);
 
   --card: oklch(1 0 0);
@@ -117,19 +148,11 @@
 
   --popover-foreground: oklch(0.145 0 0);
 
-  --primary: oklch(0.205 0 0);
-
   --primary-foreground: oklch(0.985 0 0);
-
-  --secondary: oklch(0.97 0 0);
-
-  --secondary-foreground: oklch(0.205 0 0);
 
   --muted: oklch(0.97 0 0);
 
   --muted-foreground: oklch(0.556 0 0);
-
-  --accent: oklch(0.97 0 0);
 
   --accent-foreground: oklch(0.205 0 0);
 

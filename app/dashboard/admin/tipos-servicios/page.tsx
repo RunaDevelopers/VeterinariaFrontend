@@ -26,7 +26,7 @@ export default async function TiposServiciosPage() {
       </Header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {tiposServicios.map((tipo) => (
+        {tiposServicios.data.map((tipo) => (
           <TipoServicioCard
             key={tipo.idTipoServicio}
             tipoServicio={tipo}
@@ -34,7 +34,7 @@ export default async function TiposServiciosPage() {
         ))}
       </div>
 
-      {tiposServicios.length === 0 && (
+      {tiposServicios.data.length === 0 && (
         <div className="text-center py-12">
           <p className="text-muted-foreground">No hay tipos de servicios registrados</p>
         </div>

@@ -15,14 +15,7 @@ export const Navbar = () => {
     <>
       <header className="flex items-center justify-between py-6 px-8 container mx-auto">
         <Link href="/inicio" className="flex gap-2 items-center">
-          <Image
-            src="/logo.webp"
-            alt="Logo de vetPet"
-            width={50}
-            height={50}
-            className="object-contain"
-          />
-          <span className="text-3xl font-bold">vetPet</span>
+          <span className="text-3xl font-bold">VetPet</span>
         </Link>
         <nav className="flex gap-3 p-2 bg-cyan-400 rounded-lg">
           {routes.map((route) => (

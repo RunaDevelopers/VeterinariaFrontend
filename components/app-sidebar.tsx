@@ -2,24 +2,22 @@
 
 import * as React from "react"
 import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-  User,
+  LayoutDashboard,
+  Users,
   Calendar,
-  Heart,
-  UserCircle,
+  Package,
+  DollarSign,
+  FileText,
+  Settings,
+  LifeBuoy,
+  UserCheck,
+  Dog,
+  Stethoscope,
+  PawPrint,
+  Syringe,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
@@ -39,46 +37,52 @@ const sidebarConfig = {
     navMain: [
       {
         title: "Dashboard",
-        url: "#",
-        icon: SquareTerminal,
+        url: "/dashboard/admin",
+        icon: LayoutDashboard,
         isActive: true,
-        items: [
-          {
-            title: "Panel",
-            url: "/dashboard/admin",
-          },
-        ],
       },
       {
-        title: "Gestión",
-        url: "#",
-        icon: Bot,
-        items: [
-          {
-            title: "Reservas",
-            url: "/dashboard/admin/reservas",
-          },
-          {
-            title: "Clientes",
-            url: "/dashboard/admin/clientes",
-          },
-          {
-            title: "Mascotas",
-            url: "/dashboard/admin/mascotas",
-          },
-          {
-            title: "Especies",
-            url: "/dashboard/admin/especies",
-          },
-          {
-            title: "Razas",
-            url: "/dashboard/admin/razas",
-          },
-          {
-            title: "Tipos de Servicios",
-            url: "/dashboard/admin/tipos-servicios",
-          }
-        ],
+        title: "Clientes",
+        url: "/dashboard/admin/clientes",
+        icon: Users,
+        badge: "128",
+      },
+      {
+        title: "Citas",
+        url: "/dashboard/admin/citas",
+        icon: Calendar,
+        badge: "15",
+      },
+      {
+        title: "Mascotas",
+        url: "/dashboard/admin/mascotas",
+        icon: Dog,
+      },
+      {
+        title: "Consultas Médicas",
+        url: "/dashboard/admin/consultas",
+        icon: Stethoscope,
+      },
+      {
+        title: "Productos",
+        url: "/dashboard/admin/productos",
+        icon: Package,
+      },
+      {
+        title: "Facturación",
+        url: "/dashboard/admin/facturacion",
+        icon: DollarSign,
+      },
+      {
+        title: "Leads",
+        url: "/dashboard/admin/leads",
+        icon: UserCheck,
+        badge: "23",
+      },
+      {
+        title: "Reportes",
+        url: "/dashboard/admin/reportes",
+        icon: FileText,
       },
     ],
     navSecondary: [
@@ -89,8 +93,8 @@ const sidebarConfig = {
       },
       {
         title: "Configuración",
-        url: "#",
-        icon: Settings2,
+        url: "/dashboard/admin/configuracion",
+        icon: Settings,
       },
     ],
   },
@@ -98,115 +102,24 @@ const sidebarConfig = {
     navMain: [
       {
         title: "Mi Dashboard",
-        url: "#",
-        icon: SquareTerminal,
+        url: "/dashboard/cliente",
+        icon: LayoutDashboard,
         isActive: true,
-        items: [
-          {
-            title: "Inicio",
-            url: "/dashboard/cliente",
-          },
-        ],
       },
       {
-        title: "Mis Servicios",
-        url: "#",
-        icon: Bot,
-        items: [
-          {
-            title: "Mis Mascotas",
-            url: "/dashboard/cliente/mis-mascotas",
-          },
-          {
-            title: "Mis Citas",
-            url: "/dashboard/cliente/mis-citas",
-          },
-          {
-            title: "Mi Perfil",
-            url: "/dashboard/cliente/perfil",
-          },
-        ],
-      },
-    ],
-    navSecondary: [
-      {
-        title: "Soporte",
-        url: "#",
-        icon: LifeBuoy,
+        title: "Mis Mascotas",
+        url: "/dashboard/cliente/mascotas",
+        icon: PawPrint,
       },
       {
-        title: "Ayuda",
-        url: "#",
-        icon: Send,
-      },
-    ],
-  },
-  veterinario: {
-    navMain: [
-      {
-        title: "Dashboard",
-        url: "#",
-        icon: SquareTerminal,
-        isActive: true,
-        items: [
-          {
-            title: "Panel",
-            url: "/dashboard/veterinario",
-          },
-        ],
-      },
-      {
-        title: "Atención",
-        url: "#",
-        icon: Heart,
-        items: [
-          {
-            title: "Consultas",
-            url: "/dashboard/veterinario/consultas",
-          },
-          {
-            title: "Historiales",
-            url: "/dashboard/veterinario/historiales",
-          },
-        ],
-      },
-    ],
-    navSecondary: [
-      {
-        title: "Soporte",
-        url: "#",
-        icon: LifeBuoy,
-      },
-    ],
-  },
-  recepcionista: {
-    navMain: [
-      {
-        title: "Dashboard",
-        url: "#",
-        icon: SquareTerminal,
-        isActive: true,
-        items: [
-          {
-            title: "Panel",
-            url: "/dashboard/recepcionista",
-          },
-        ],
-      },
-      {
-        title: "Atención al Cliente",
-        url: "#",
+        title: "Mis Citas",
+        url: "/dashboard/cliente/citas",
         icon: Calendar,
-        items: [
-          {
-            title: "Citas",
-            url: "/dashboard/recepcionista/citas",
-          },
-          {
-            title: "Clientes",
-            url: "/dashboard/recepcionista/clientes",
-          },
-        ],
+      },
+      {
+        title: "Historial Médico",
+        url: "/dashboard/cliente/historial",
+        icon: FileText,
       },
     ],
     navSecondary: [
@@ -214,53 +127,43 @@ const sidebarConfig = {
         title: "Soporte",
         url: "#",
         icon: LifeBuoy,
+      },
+      {
+        title: "Mi Perfil",
+        url: "/dashboard/cliente/perfil",
+        icon: Settings,
       },
     ],
   },
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { user, isAdmin, isCliente, isVeterinario, isRecepcionista } = useAuth();
+  const { user } = useAuth()
+  const role = user?.rol?.nombre?.toLowerCase() || "cliente"
 
-  // Determinar qué configuración de sidebar mostrar según el rol
-  const getSidebarData = () => {
-    if (isAdmin()) return sidebarConfig.admin;
-    if (isCliente()) return sidebarConfig.cliente;
-    if (isVeterinario()) return sidebarConfig.veterinario;
-    if (isRecepcionista()) return sidebarConfig.recepcionista;
-    
-    // Por defecto, mostrar configuración básica
-    return {
-      navMain: [],
-      navSecondary: [],
-    };
-  };
-
-  const sidebarData = getSidebarData();
-
-  // Datos del usuario para el footer
-  const userData = {
-    name: user ? `${user.nombres} ${user.apellidos}` : "Usuario",
-    email: user?.email || "",
-    avatar: "/avatars/default.jpg",
-  };
+  const config = sidebarConfig[role as keyof typeof sidebarConfig] || sidebarConfig.cliente
 
   return (
-    <Sidebar
-      className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
+    <Sidebar 
+      variant="inset" 
       {...props}
+      className="border-r border-borderColor"
     >
-      <SidebarHeader>
+      <SidebarHeader className="border-b border-borderColor">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Command className="size-4" />
+              <a href="/dashboard" className="flex items-center gap-3">
+                <div className="flex aspect-square size-10 items-center justify-center rounded-lg bg-primary text-white">
+                  <Dog className="size-5" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Veterinaria</span>
-                  <span className="truncate text-xs">{user?.nombreRol || "Sistema"}</span>
+                  <span className="truncate font-bold text-textPrimary text-lg">
+                    vetPet
+                  </span>
+                  <span className="truncate text-xs text-textSecondary">
+                    Sistema Veterinario
+                  </span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -268,12 +171,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={sidebarData.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
-        <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
+        <NavMain items={config.navMain} />
+        <NavSecondary items={config.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={userData} />
+      <SidebarFooter className="border-t border-borderColor">
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

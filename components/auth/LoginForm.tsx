@@ -128,7 +128,7 @@ export const LoginForm = ({ onToggleForm }: LoginFormProps) => {
                 type="button"
                 onClick={onToggleForm}
                 disabled={isSubmitting}
-                className={`text-cyan-400 font-semibold text-sm cursor-pointer ${
+                className={`text-[#2F80ED] font-semibold text-sm cursor-pointer ${
                   isSubmitting
                     ? "bg-gray-300 text-black pointer-events-none"
                     : ""

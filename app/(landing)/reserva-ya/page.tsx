@@ -9,7 +9,7 @@ export const metadata = {
 
 export default async function ReservaYaPage() {
   const tiposServicio = await getTiposServicio();
-  const tiposActivos = tiposServicio.filter(tipo => tipo.activo !== false);
+  const tiposActivos = tiposServicio.data.filter(tipo => tipo.activo !== false);
 
   return (
     <div className="mt-20">
